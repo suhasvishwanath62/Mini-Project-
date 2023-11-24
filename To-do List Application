@@ -1,0 +1,68 @@
+Mini Project: To-do List Application
+------------------------------------
+# Function to add a task to the to-do list
+def add_task(todo_list, task):
+    todo_list.append({'task': task, 'completed': False})
+    print(f'Task "{task}" added successfully!')
+
+# Function to delete a task from the to-do list
+def delete_task(todo_list, task):
+    for t in todo_list:
+        if t['task'] == task:
+            todo_list.remove(t)
+            print(f'Task "{task}" deleted successfully!')
+            return
+    print(f'Task "{task}" not found in the to-do list.')
+
+# Function to display the list of tasks
+def display_tasks(todo_list):
+    if not todo_list:
+        print("No tasks in the to-do list.")
+    else:
+        print("To-Do List:")
+        for index, t in enumerate(todo_list, start=1):
+            status = "Completed" if t['completed'] else "Not Completed"
+            print(f'{index}. {t["task"]} - {status}')
+
+# Function to mark a task as complete
+def mark_complete(todo_list, task):
+    for t in todo_list:
+        if t['task'] == task:
+            t['completed'] = True
+            print(f'Task "{task}" marked as complete!')
+            return
+    print(f'Task "{task}" not found in the to-do list.')
+
+# Main function to run the to-do list application
+def main():
+    todo_list = []
+
+    while True:
+        print("\nTo-Do List Application")
+        print("1. Add Task")
+        print("2. Delete Task")
+        print("3. Display Tasks")
+        print("4. Mark Task as Complete")
+        print("5. Quit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == '1':
+            task = input("Enter the task: ")
+            add_task(todo_list, task)
+        elif choice == '2':
+            task = input("Enter the task to delete: ")
+            delete_task(todo_list, task)
+        elif choice == '3':
+            display_tasks(todo_list)
+        elif choice == '4':
+            task = input("Enter the task to mark as complete: ")
+            mark_complete(todo_list, task)
+        elif choice == '5':
+            print("Exiting the to-do list application. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
